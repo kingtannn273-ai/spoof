@@ -1,0 +1,12 @@
+{
+  "name": "TannSpoof — Roblox Animation Spoofer",
+  "short_name": "TannSpoof",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08070f",
+  "theme_color": "#090711",
+  "description": "Offline-first Roblox animation ID spoof/replace utility with Studio preview bridge.",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

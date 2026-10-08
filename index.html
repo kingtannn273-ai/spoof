@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090711">
+  <meta name="description" content="TannSpoof — Roblox Animation ID batch spoof/replace utility with Studio preview bridge.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>TannSpoof — Roblox Animation Spoofer</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">TS</div>
+        <div>
+          <div class="brand">TannSpoof</div>
+          <div class="subtitle">ROBLOX ANIMATION ID TOOL</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="installBtn" class="ghost hidden">Install PWA</button>
+        <button id="themeBtn" class="icon-btn" title="Toggle compact theme">◐</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero panel">
+        <div>
+          <span class="pill">NO SUPABASE • NO NODE.JS • OFFLINE-FIRST</span>
+          <h1>Batch spoof your Roblox animation IDs.</h1>
+          <p>Paste IDs, assign a target, preview through Roblox Studio, and generate a server-safe Command Bar script in one click.</p>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-value" id="heroCount">0</div>
+          <div>Animation IDs</div>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <div class="panel">
+          <div class="panel-head">
+            <div><h2>1. Source IDs</h2><span>One ID per line • commas and rbxassetid:// accepted</span></div>
+            <button id="clearIds" class="small-btn">Clear</button>
+          </div>
+          <textarea id="sourceIds" class="codebox" placeholder="1234567890\n9876543210\nrbxassetid://5555555555"></textarea>
+          <div class="inline-row">
+            <button id="parseBtn" class="primary">Parse IDs</button>
+            <button id="sampleBtn" class="secondary">Load sample</button>
+          </div>
+        </div>
+
+        <div class="panel accent-panel">
+          <div class="panel-head">
+            <div><h2>2. Spoof Target</h2><span>Applied to all parsed IDs in global mode</span></div>
+            <label class="switch"><input id="globalMode" type="checkbox" checked><span></span></label>
+          </div>
+          <input id="targetId" class="text-input" inputmode="numeric" placeholder="Target animation ID">
+          <div class="hint">Example: <code>1234567890</code> becomes <code>rbxassetid://1234567890</code>.</div>
+          <div class="inline-row">
+            <button id="copyGlobalScript" class="primary">Copy Global Spoof Script</button>
+            <button id="downloadScript" class="secondary">Download .lua</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div><h2>3. Animation Library</h2><span>Preview, edit, or map each ID</span></div>
+          <div class="inline-row no-margin"><button id="addRow" class="secondary">+ Add</button><button id="copyMapScript" class="primary">Copy Mapping Script</button></div>
+        </div>
+        <div id="rows" class="rows"></div>
+      </section>
+
+      <section class="grid-2">
+        <div class="panel">
+          <div class="panel-head"><div><h2>4. Studio Preview Bridge</h2><span>Uses a rig selected in Roblox Studio</span></div><span class="status-dot">STUDIO</span></div>
+          <div class="preview-card">
+            <div class="preview-stage">
+              <div class="fake-rig"><div class="head"></div><div class="torso"></div><div class="arm a1"></div><div class="arm a2"></div><div class="leg l1"></div><div class="leg l2"></div></div>
+            </div>
+            <div class="preview-copy">
+              <strong>Real animation playback happens in Studio</strong>
+              <p>TannSpoof generates a preview command that loads the selected animation on your selected rig, without pressing Play.</p>
+              <button id="copyPreviewScript" class="primary wide">Copy Preview Command</button>
+              <button id="openRoblox" class="secondary wide">Open Roblox Asset Page</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><div><h2>5. Source Transformer</h2><span>Quickly replace IDs inside pasted Luau</span></div></div>
+          <textarea id="sourceCode" class="codebox tall" placeholder='Paste Luau here, e.g. AnimationId = "rbxassetid://123"'></textarea>
+          <div class="inline-row">
+            <button id="transformBtn" class="primary">Transform</button>
+            <button id="copyCode" class="secondary">Copy Result</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel warning-panel">
+        <div class="warning-title">Publishing note</div>
+        <p>TannSpoof does not bypass Roblox ownership, moderation, or cloud-publishing requirements. Existing published animation IDs can be swapped instantly. New animation assets still have to exist in Roblox's cloud before they can be referenced reliably online.</p>
+      </section>
+    </main>
+
+    <footer>credit by tannn • TannSpoof • local-only data, no account credentials stored</footer>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
